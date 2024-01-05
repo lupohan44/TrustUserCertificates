@@ -6,7 +6,7 @@ This module extracts code from [HTTP Toolkit](https://github.com/httptoolkit/htt
 
 ### Installation
 1. Install Magisk
-2. Download latest [release](releases)
+2. Download latest [release](https://github.com/lupohan44/TrustUserCertificates/releases)
 
 ### Adding certificates
 Install the certificate as a user certificate and restart the device.
@@ -14,4 +14,4 @@ Install the certificate as a user certificate and restart the device.
 ### Removing certificates
 Remove the certificate from the user store through the settings, and restart the device.
 
-### [Changelog](https://github.com/lupohan44/TrustUserCertificates/blob/main/readme.md)
+### [Changelog](https://github.com/lupohan44/TrustUserCertificates/blob/main/changelog.md)

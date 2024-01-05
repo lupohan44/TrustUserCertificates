@@ -5,4 +5,4 @@ versionCode=1000
 author=lupohan44
 description=This module extracts code from HTTP Toolkit (https://github.com/httptoolkit/httptoolkit-server/blob/main/src/interceptors/android/adb-commands.ts)
 minMagisk=20400
-updateJson=https://raw.githubusercontent.com/lupohan44/TrustUserCertificates/main/update.json
+updateJson=https://github.com/<OWNER>/<REPO>/releases/latest/download/update.json
