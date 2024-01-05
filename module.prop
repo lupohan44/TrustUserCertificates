@@ -1,8 +1,8 @@
 id=trustusercerts
 name=Trust User Certificates in Android 14
-version=v1.0
-versionCode=1000
+version=v1.1
+versionCode=1001
 author=lupohan44
 description=This module extracts code from HTTP Toolkit (https://github.com/httptoolkit/httptoolkit-server/blob/main/src/interceptors/android/adb-commands.ts)
 minMagisk=20400
-updateJson=https://github.com/<OWNER>/<REPO>/releases/latest/download/update.json
+updateJson=https://github.com/lupohan44/TrustUserCertificates/releases/latest/download/update.json
