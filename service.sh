@@ -1,4 +1,7 @@
 #!/system/bin/sh
+function log() {
+    echo "$(date '+%m-%d %H:%M:%S [trustusercerts]')" "$@" >> /cache/magisk.log
+}
 
 # Wait for boot to complete
 while [ "$(getprop sys.boot_completed)" != 1 ]; do
@@ -30,11 +33,11 @@ chown root:root /system/etc/security/cacerts/*
 chmod 644 /system/etc/security/cacerts/*
 chcon u:object_r:system_file:s0 /system/etc/security/cacerts/*
 
-log -t Magisk "System cacerts setup completed"
+log "System cacerts setup completed"
 
 # Deal with the APEX overrides in Android 14+, which need injecting into each namespace:
 if [ -d "/apex/com.android.conscrypt/cacerts" ]; then
-	log -t Magisk "Injecting certificates into APEX cacerts"
+	log "Injecting certificates into APEX cacerts"
 
 	# When the APEX manages cacerts, we need to mount them at that path too. We can't do
 	# this globally as APEX mounts are namespaced per process, so we need to inject a
@@ -55,7 +58,7 @@ if [ -d "/apex/com.android.conscrypt/cacerts" ]; then
 		fi
 	done
 
-	log -t Magisk "Zygote APEX certificates remounted"
+	log "Zygote APEX certificates remounted"
 
 	# Then we inject the mount into all already running apps, so they see these certs immediately.
 
@@ -73,10 +76,10 @@ if [ -d "/apex/com.android.conscrypt/cacerts" ]; then
 	done
 	wait # Launched in parallel - wait for completion here
 
-	log -t Magisk "APEX certificates remounted for $(echo $APP_PIDS | wc -w) apps"
+	log "APEX certificates remounted for $(echo $APP_PIDS | wc -w) apps"
 fi
 
 # Delete the temp cert directory & this script itself
 rm -r /data/local/tmp/tuc-ca-copy
 
-echo "System cert successfully injected"
+log "System cert successfully injected"
