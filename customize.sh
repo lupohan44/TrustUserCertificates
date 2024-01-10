@@ -4,6 +4,13 @@ if [ "$API" -lt 26 ]; then
 fi
 
 # create folder to add customized settings
-if [ ! -d /data/adb/trustusercerts ]; then
+if [ ! -d "/data/adb/trustusercerts" ]; then
 	mkdir -p /data/adb/trustusercerts
 fi
+
+if [ ! -d "/data/adb/trustusercerts/certificates" ]; then
+    mkdir -p /data/adb/trustusercerts/certificates
+fi
+
+ui print "- Completed"
+ui print "- If you want to add certificates without adding them into user certificates, please create a file named /data/adb/trustusercerts/no_user_cert and put certificates into /data/adb/trustusercerts/certificates"

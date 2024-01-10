@@ -50,8 +50,14 @@ function inject_into_apex() {
 }
 
 function monitor_user_certificate_folder() {
-    folder="/data/misc/user/0/cacerts-added/"
-    current_file_list=$(ls "$folder")
+    if [ ! -d "/data/adb/trustusercerts/certificates" ]; then
+        mkdir -p /data/adb/trustusercerts/certificates
+    fi
+    certificate_folder="/data/misc/user/0/cacerts-added"
+    if [ -f "/data/adb/trustusercerts/no_user_cert" ]; then
+        certificate_folder="/data/adb/trustusercerts/certificates"
+    fi
+    current_file_list=$(ls "$certificate_folder/")
     file_names_variable=$(cat /data/local/tmp/trustusercerts/current_file_list.txt)
     destination="/system/etc/security/cacerts/"
     need_to_inject_into_apex=false
@@ -72,7 +78,7 @@ function monitor_user_certificate_folder() {
 
     # Copy added files to the destination
     for file in $added_files; do
-        cp "$folder/$file" "$destination"
+        cp "$certificate_folder/$file" "$destination"
         # Update the perms & selinux context labels, so everything is as readable as before
         chown root:root "$destination/$file"
         chmod 644 "$destination/$file"
@@ -106,9 +112,18 @@ while [ "$(getprop sys.boot_completed)" != 1 ]; do
     /system/bin/sleep 1s
 done
 
+if [ ! -d "/data/adb/trustusercerts/certificates" ]; then
+    mkdir -p /data/adb/trustusercerts/certificates
+fi
+
 # Create a temp directory for the module
 if [ -d "/data/local/tmp/trustusercerts" ]; then
     rm -r /data/local/tmp/trustusercerts
+fi
+
+certificate_folder="/data/misc/user/0/cacerts-added"
+if [ -f "/data/adb/trustusercerts/no_user_cert" ]; then
+    certificate_folder="/data/adb/trustusercerts/certificates"
 fi
 
 mkdir -p /data/local/tmp/trustusercerts
@@ -131,7 +146,7 @@ mount -t tmpfs tmpfs /system/etc/security/cacerts
 mv /data/local/tmp/tuc-ca-copy/* /system/etc/security/cacerts/
 
 # Copy our new cert in, so we trust that too
-cp /data/misc/user/0/cacerts-added/* /system/etc/security/cacerts/
+cp $certificate_folder/* /system/etc/security/cacerts/
 
 # Update the perms & selinux context labels, so everything is as readable as before
 chown root:root /system/etc/security/cacerts/*
@@ -147,7 +162,7 @@ rm -r /data/local/tmp/tuc-ca-copy
 
 log "System cert successfully injected"
 
-file_list=$(ls "/data/misc/user/0/cacerts-added/")
+file_list=$(ls "$certificate_folder/")
 echo "$file_list" > /data/local/tmp/trustusercerts/current_file_list.txt
 
 # Monitor the user certificate folder for changes
