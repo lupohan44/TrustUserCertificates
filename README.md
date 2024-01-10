@@ -10,11 +10,16 @@ This module's main code logic comes from [HTTP Toolkit](https://github.com/httpt
 1. Install Magisk
 2. Download latest [release](https://github.com/lupohan44/TrustUserCertificates/releases)
 3. Install module through Magisk Manager
+4. (Optional) create a file named /data/adb/trustusercerts/no_user_cert and put certificates into /data/adb/trustusercerts/certificates - This step will make module using certificates from this folder instead of user certificates
 
 ### Adding certificates
-Install the certificate as a user certificate and restart the device.
+Depending on have you done step 4 in installation, you need to install the certificate as a user certificate or put the certificate into /data/adb/trustusercerts/certificates
+
+If your phone is android 14, you need to reboot your phone as well.
 
 ### Removing certificates
-Remove the certificate from the user store through the settings, and restart the device.
+Depending on have you done step 4 in installation, you need to remove the certificate as a user certificate or remove the certificate from /data/adb/trustusercerts/certificates
+
+If your phone is android 14, you need to reboot your phone as well.
 
 ### [Changelog](https://github.com/lupohan44/TrustUserCertificates/blob/main/changelog.md)

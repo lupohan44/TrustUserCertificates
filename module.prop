@@ -1,7 +1,7 @@
 id=trustusercerts
 name=Trust User Certificates
-version=v1.1
-versionCode=1001
+version=v1.2
+versionCode=1002
 author=lupohan44
 description=This module injects all user certificates into system certificates.
 minMagisk=20400
