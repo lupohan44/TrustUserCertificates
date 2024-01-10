@@ -12,5 +12,5 @@ if [ ! -d "/data/adb/trustusercerts/certificates" ]; then
     mkdir -p /data/adb/trustusercerts/certificates
 fi
 
-ui print "- Completed"
-ui print "- If you want to add certificates without adding them into user certificates, please create a file named /data/adb/trustusercerts/no_user_cert and put certificates into /data/adb/trustusercerts/certificates"
+ui_print "- Completed"
+ui_print "- If you want to add certificates without adding them into user certificates, please create a file named /data/adb/trustusercerts/no_user_cert and put certificates into /data/adb/trustusercerts/certificates"
