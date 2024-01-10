@@ -1,12 +1,15 @@
 # Trust User Certs
 
-This module makes system trust all user certificates.
+This module injects all user certificates into system certificates.
 
-This module extracts code from [HTTP Toolkit](https://github.com/httptoolkit/httptoolkit-server/blob/main/src/interceptors/android/adb-commands.ts)
+This module should work on Android 8.0+. Tested on Android 14.
+
+This module's main code logic comes from [HTTP Toolkit](https://github.com/httptoolkit/httptoolkit-server/blob/main/src/interceptors/android/adb-commands.ts)
 
 ### Installation
 1. Install Magisk
 2. Download latest [release](https://github.com/lupohan44/TrustUserCertificates/releases)
+3. Install module through Magisk Manager
 
 ### Adding certificates
 Install the certificate as a user certificate and restart the device.
