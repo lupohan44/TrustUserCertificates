@@ -15,11 +15,14 @@ This module's main code logic comes from [HTTP Toolkit](https://github.com/httpt
 ### Adding certificates
 Depending on have you done step 4 in installation, you need to install the certificate as a user certificate or put the certificate into /data/adb/trustusercerts/certificates
 
-If your phone is android 14, you need to reboot your phone as well.
+Then, you need to reboot your phone
 
 ### Removing certificates
 Depending on have you done step 4 in installation, you need to remove the certificate as a user certificate or remove the certificate from /data/adb/trustusercerts/certificates
 
-If your phone is android 14, you need to reboot your phone as well.
+Then, you need to reboot your phone.
+
+### TODO
+* Try to fix with monitor_user_certificate_folder, phone will reboot when add/remove certificate
 
 ### [Changelog](https://github.com/lupohan44/TrustUserCertificates/blob/main/changelog.md)
