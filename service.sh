@@ -162,11 +162,13 @@ rm -r /data/local/tmp/tuc-ca-copy
 
 log "System cert successfully injected"
 
-file_list=$(ls "$certificate_folder/")
-echo "$file_list" > /data/local/tmp/trustusercerts/current_file_list.txt
-
 # Monitor the user certificate folder for changes
-while true; do
-    monitor_user_certificate_folder
-    /system/bin/sleep 5s
-done
+#
+# file_list=$(ls "$certificate_folder/")
+# echo "$file_list" > /data/local/tmp/trustusercerts/current_file_list.txt
+#
+# Seems causing phone to reboot
+# while true; do
+#     monitor_user_certificate_folder
+#     /system/bin/sleep 5s
+# done
